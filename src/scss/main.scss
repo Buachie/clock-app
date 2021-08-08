@@ -12,7 +12,7 @@ html {
     margin: 0;
     padding: 0;
     font-family: "Inter", sans-serif;
-    .root {
+    #root {
       height: 100%;
     }
   }
@@ -26,9 +26,12 @@ h1 {
 
 .data {
   display: flex;
-  flex-direction: row;
-  justify-content: start;
+  flex-direction: column;
+
   .time {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
     .time-zone {
       font-size: 24px;
     }
@@ -36,8 +39,35 @@ h1 {
 }
 
 .App {
+  max-width: 1400px;
+  width: 95%;
+  margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.more-info {
+  width: fit-content;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.extra-info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    //justify-content: space-between;
+  }
 }
