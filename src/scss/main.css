@@ -18,6 +18,7 @@ html body {
 
 html body #root {
   height: 100%;
+  width: 100%;
 }
 
 h1 {
@@ -25,38 +26,32 @@ h1 {
   font-weight: bold;
 }
 
-.data {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.data .time {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-}
-
-.data .time .time-zone {
-  font-size: 24px;
-}
-
 .App {
+  color: #fff;
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.App .background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.377);
+  z-index: 1;
+}
+
+.content {
   max-width: 1400px;
   width: 95%;
   margin: 0 auto;
   height: 100%;
+  position: relative;
+  z-index: 2;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,6 +62,44 @@ h1 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.greeting {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1em;
+}
+
+.clock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.clock .current-time {
+  font-size: 100px;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  justify-self: flex-end;
+}
+
+.clock .time-zone {
+  font-size: 30px;
+  margin: 0.5em;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 .more-info {
@@ -92,19 +125,21 @@ h1 {
   gap: 1em;
 }
 
-.extra-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.data {
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.562);
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  position: absolute;
+  bottom: -100px;
+  display: none;
 }
 
-.extra-info .info {
+.data .info {
   width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -113,5 +148,12 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.active {
+  position: static;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 /*# sourceMappingURL=main.css.map */

@@ -14,6 +14,7 @@ html {
     font-family: "Inter", sans-serif;
     #root {
       height: 100%;
+      width: 100%;
     }
   }
 }
@@ -24,28 +25,56 @@ h1 {
   font-weight: bold;
 }
 
-.data {
-  display: flex;
-  flex-direction: column;
+.App {
+  color: #fff;
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+  z-index: 1;
 
-  .time {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    .time-zone {
-      font-size: 24px;
-    }
+  .background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.377);
+    z-index: 1;
   }
 }
 
-.App {
+.content {
   max-width: 1400px;
   width: 95%;
   margin: 0 auto;
   height: 100%;
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.greeting {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
+.clock {
+  display: flex;
+  flex-direction: row;
+  .current-time {
+    font-size: 100px;
+    align-self: flex-end;
+    justify-self: flex-end;
+  }
+  .time-zone {
+    font-size: 30px;
+    margin: 0.5em;
+    align-self: flex-end;
+  }
 }
 
 .more-info {
@@ -60,14 +89,23 @@ h1 {
   gap: 1em;
 }
 
-.extra-info {
-  display: flex;
+.data {
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.562);
   flex-direction: row;
   flex-wrap: wrap;
+  position: absolute;
+  bottom: -100px;
+  display: none;
   .info {
     width: 50%;
     display: flex;
     flex-direction: column;
     //justify-content: space-between;
   }
+}
+
+.active {
+  position: static;
+  display: flex;
 }
