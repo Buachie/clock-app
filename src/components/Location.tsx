@@ -4,7 +4,7 @@ import { fetchLocation, Location } from "../API";
 //Arrow Icons
 import ArrowUp from "../assets/desktop/icon-arrow-up.svg";
 
-const UserTime = () => {
+const UserTime: React.FC = () => {
   const [location, setLocation] = useState<Location>();
   const [time, setTime] = useState<string>();
   const [menu, setMenu] = useState<boolean>(false);

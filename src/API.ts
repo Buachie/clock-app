@@ -25,6 +25,8 @@ export type Quote = {
     tags: string[]
 }
 
+
+
 export const fetchLocation = async() => {
     const endpoint:string = 'http://worldtimeapi.org/api/ip';
     const data:any = await(await fetch(endpoint)).json();
