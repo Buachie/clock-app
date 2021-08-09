@@ -45,8 +45,6 @@ h1 {
 }
 
 .content {
-  max-width: 1400px;
-  width: 95%;
   margin: 0 auto;
   height: 100%;
   position: relative;
@@ -54,6 +52,14 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.quote-entry,
+.info-container,
+.data-container {
+  max-width: 1400px;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .greeting {
@@ -93,19 +99,40 @@ h1 {
   color: #000;
   background-color: rgba(255, 255, 255, 0.562);
   flex-direction: row;
+  width: 100vw;
+  margin: 0 auto;
   flex-wrap: wrap;
   position: absolute;
   bottom: -100px;
   display: none;
   .info {
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     //justify-content: space-between;
+    p,
+    h2 {
+      margin: 0.4em 0;
+    }
   }
 }
 
 .active {
-  position: static;
+  position: relative;
+  bottom: 0;
   display: flex;
+}
+
+//Quote Entry
+.quote {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  button {
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    background: none;
+  }
 }

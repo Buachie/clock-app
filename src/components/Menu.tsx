@@ -1,38 +1,37 @@
 import { useState, useEffect } from "react";
-import { fetchLocation, Location } from "../API";
+import { fetchTimeData, TimeData } from "../API";
 
-interface Props {
-  active: boolean;
-}
 const Menu: React.FC<{ active: boolean }> = ({ active }) => {
-  const [location, setLocation] = useState<Location>();
+  const [timeData, setTimeData] = useState<TimeData>();
 
-  const getLocation = async () => {
-    const newLocation = await fetchLocation();
-    setLocation(newLocation);
+  const getTimeData = async () => {
+    const worldTime = await fetchTimeData();
+    setTimeData(worldTime);
   };
 
   useEffect(() => {
-    getLocation();
-  }, [location]);
+    getTimeData();
+  }, [timeData]);
 
   return (
     <div className={`data ${active ? "active" : null}`}>
-      <div className="info">
-        <p>CURRENT TIMEZONE</p>
-        <h2>{location?.timezone}</h2>
-      </div>
-      <div className="info">
-        <p>DAY OF THE YEAR</p>
-        <h2>{location?.day_of_year}</h2>
-      </div>
-      <div className="info">
-        <p>DAY OF THE WEEK</p>
-        <h2>{location?.day_of_week}</h2>
-      </div>
-      <div className="info">
-        <p>WEEK NUMBER</p>
-        <h2>{location?.week_number}</h2>
+      <div className="data-container">
+        <div className="info">
+          <p>CURRENT TIMEZONE</p>
+          <h2>{timeData?.timezone}</h2>
+        </div>
+        <div className="info">
+          <p>DAY OF THE YEAR</p>
+          <h2>{timeData?.day_of_year}</h2>
+        </div>
+        <div className="info">
+          <p>DAY OF THE WEEK</p>
+          <h2>{timeData?.day_of_week}</h2>
+        </div>
+        <div className="info">
+          <p>WEEK NUMBER</p>
+          <h2>{timeData?.week_number}</h2>
+        </div>
       </div>
     </div>
   );

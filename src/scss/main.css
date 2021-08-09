@@ -46,8 +46,6 @@ h1 {
 }
 
 .content {
-  max-width: 1400px;
-  width: 95%;
   margin: 0 auto;
   height: 100%;
   position: relative;
@@ -62,6 +60,14 @@ h1 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.quote-entry,
+.info-container,
+.data-container {
+  max-width: 1400px;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .greeting {
@@ -132,6 +138,8 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  width: 100vw;
+  margin: 0 auto;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   position: absolute;
@@ -140,7 +148,7 @@ h1 {
 }
 
 .data .info {
-  width: 50%;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -150,10 +158,43 @@ h1 {
           flex-direction: column;
 }
 
+.data .info p,
+.data .info h2 {
+  margin: 0.4em 0;
+}
+
 .active {
-  position: static;
+  position: relative;
+  bottom: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.quote {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.quote button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: none;
+  background: none;
 }
 /*# sourceMappingURL=main.css.map */

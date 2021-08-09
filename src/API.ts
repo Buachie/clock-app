@@ -1,4 +1,6 @@
-export type Location = {
+import axios from "axios"
+
+export type TimeData = {
     abbreviation: string;
     client_ip: string;
     datetime: string;
@@ -25,17 +27,41 @@ export type Quote = {
     tags: string[]
 }
 
+export type Location = {
+    ip: string,
+    country_code: string,
+    country_name: string,
+    region_code:  string,
+    region_name: string,
+    city: string,
+    zip_code: string,
+    time_zone: string,
+    latitude: string,
+    longitude: string,
+    metro_code: number
+}
 
 
-export const fetchLocation = async() => {
+export const fetchTimeData = async() => {
     const endpoint:string = 'http://worldtimeapi.org/api/ip';
     const data:any = await(await fetch(endpoint)).json();
     //console.log(data);
-    return data as Location; 
+    return data as TimeData; 
 }
 
 export const fetchQuote = async() => {
     const endpoint:string = 'https://api.quotable.io/random';
     const data:any = await(await fetch(endpoint)).json();
     return data as Quote;
+}
+
+export const fetchLocation = async() => {
+    const endpoint:string = 'https://freegeoip.app/json/';
+    //const data:any = await fetch(endpoint);
+    const data = axios.get(endpoint)
+        .then ((res) => {
+            return res.data
+        })
+    //console.log(data);
+    return data as unknown as Location;
 }
