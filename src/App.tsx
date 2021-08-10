@@ -97,7 +97,11 @@ const App: React.FC = () => {
                   <p className="time-zone">{timeData?.abbreviation}</p>
                 </div>
               </div>
-              <h2 className="location">
+              <h2
+                className={`location ${
+                  location === undefined ? "hidden" : null
+                }`}
+              >
                 In {location?.city + ", " + location?.country_code}
               </h2>
             </div>

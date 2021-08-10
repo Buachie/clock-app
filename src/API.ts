@@ -43,7 +43,7 @@ export type Location = {
 
 
 export const fetchTimeData = async() => {
-    const endpoint:string = 'http://worldtimeapi.org/api/ip';
+    const endpoint:string = 'https://worldtimeapi.org/api/ip';
     const data:any = await(await fetch(endpoint)).json();
     //console.log(data);
     return data as TimeData; 

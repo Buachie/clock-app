@@ -277,6 +277,10 @@ h1 {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+.hidden {
+  display: none;
+}
+
 .more-info {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -306,11 +310,11 @@ h1 {
   height: 40%;
   margin: 0 auto;
   position: absolute;
-  bottom: -400px;
+  bottom: -3550px;
   -webkit-transform: translate3d(0, 0em, 0);
           transform: translate3d(0, 0em, 0);
-  -webkit-transition: 2.5s ease;
-  transition: 2.5s ease;
+  -webkit-transition: 1.5s ease;
+  transition: 1.5s ease;
 }
 
 .data .data-container {
@@ -390,8 +394,6 @@ h1 {
   display: flex;
   -webkit-transform: translate3d(0, 0em, 0);
           transform: translate3d(0, 0em, 0);
-  -webkit-transition: 2.5s ease;
-  transition: 2.5s ease;
 }
 
 @media screen and (min-width: 768px) {
