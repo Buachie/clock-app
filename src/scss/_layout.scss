@@ -1,4 +1,5 @@
 @import "./general";
+
 //General Stlyes
 * {
   box-sizing: border-box;
@@ -50,7 +51,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
   .info-container {
+    transition: 2.5s ease;
     @include med {
       display: flex;
       flex-direction: row;
@@ -147,9 +150,10 @@
   width: 100%;
   height: 40%;
   margin: 0 auto;
-  position: relative;
-  bottom: -100px;
-  display: none;
+  position: absolute;
+  //opacity: 0;
+  bottom: -400px;
+  //display: none;
   transform: translate3d(0, 0em, 0);
   transition: 2.5s ease;
   .data-container {
@@ -191,7 +195,12 @@
 .active {
   position: relative;
   bottom: 0;
+  opacity: 1;
   display: flex;
   transform: translate3d(0, 0em, 0);
   transition: 2.5s ease;
+
+  @include med {
+    align-items: center;
+  }
 }

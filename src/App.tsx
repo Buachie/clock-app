@@ -67,6 +67,7 @@ const App: React.FC = () => {
     getTime();
   }, [timeData]);
 
+  // Separate useEffect for location since it only needs to be retrieved once
   useEffect(() => {
     getLocation();
   }, []);
