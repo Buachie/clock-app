@@ -7,13 +7,12 @@ import { fetchTimeData, TimeData, fetchLocation, Location } from "./API";
 //Images
 import SunIcon from "./assets/desktop/icon-sun.svg";
 import MoonIcon from "./assets/desktop/icon-moon.svg";
-import Daytime from "./assets/desktop/bg-image-daytime.jpg";
-import Nighttime from "./assets/desktop/bg-image-nighttime.jpg";
 import ArrowUp from "./assets/desktop/icon-arrow-up.svg";
 import ArrowDown from "./assets/desktop/icon-arrow-down.svg";
 
 const App: React.FC = () => {
   const [time, setTime] = useState<any>();
+  const [period, setPeriod] = useState<string>("");
   const [timeData, setTimeData] = useState<TimeData>();
   const [dayTime, setDayTime] = useState<boolean>(true);
   const [greeting, setGreeting] = useState<string>("");
@@ -33,75 +32,84 @@ const App: React.FC = () => {
   const getTime = () => {
     let currentTime: Date = new Date();
     let hour = currentTime.getHours();
+    let displayHour: number | null = null;
     let minutes: any = currentTime.getMinutes();
 
     //Adds a 0 to the to the minutes during the first 10 minutes of each hour
     if (minutes < 10) {
       minutes = "0" + minutes;
     }
-    setTime(`${hour}:${minutes}`);
-    if (hour >= 5 && hour <= 11) {
-      setGreeting("GOOD MORNING, IT'S CURRENTLY");
-      setDayTime(true);
-    } else if (hour >= 12 && hour <= 17) {
-      setGreeting("GOOD AFTERNOON, IT'S CURRENTLY");
-      setDayTime(true);
+
+    if (hour > 12) {
+      displayHour = hour - 12;
     } else {
-      setGreeting("GOOD EVENING, IT'S CURRENTLY");
+      displayHour = hour;
+    }
+
+    setTime(`${displayHour}:${minutes}`);
+    if (hour >= 0 && hour <= 11) {
+      setGreeting("GOOD MORNING");
+      setDayTime(true);
+      setPeriod("AM");
+    } else if (hour >= 12 && hour <= 17) {
+      setGreeting("GOOD AFTERNOON");
+      setDayTime(true);
+      setPeriod("PM");
+    } else {
+      setGreeting("GOOD EVENING");
       setDayTime(false);
+      setPeriod("PM");
     }
   };
 
   useEffect(() => {
     getTimeData();
     getTime();
-    getLocation();
   }, [timeData]);
-  //console.log(location);
+
+  useEffect(() => {
+    getLocation();
+  }, []);
 
   return (
-    <div
-      className="App"
-      style={
-        dayTime
-          ? {
-              background: `url(${Daytime})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-            }
-          : {
-              background: `url(${Nighttime})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-            }
-      }
-    >
-      <div className="background-overlay"></div>
-      <div className="content">
-        <DisplayQuote />
-        <div className="info-container">
-          <div className="greeting">
-            <img src={dayTime ? SunIcon : MoonIcon} alt="Sun/Moon Icon" />
-            <p>{greeting}</p>
+    <div className="App">
+      <div className={`background ${dayTime ? "daytime" : "nighttime"}`}>
+        <div className="content">
+          {!displayMenu ? <DisplayQuote /> : null}
+          <div className="info-container">
+            <div className="clock-flex">
+              <div className="greeting">
+                <img
+                  className={dayTime ? "sun-icon" : "moon-icon"}
+                  src={dayTime ? SunIcon : MoonIcon}
+                  alt="Sun/Moon Icon"
+                />
+                <p>
+                  {greeting}
+                  <span>, IT'S CURRENTLY</span>
+                </p>
+              </div>
+              <div className="clock">
+                <h1 className="current-time">{time}</h1>
+                <div className="time-data">
+                  <p className="time-period">{period}</p>
+                  <p className="time-zone">{timeData?.abbreviation}</p>
+                </div>
+              </div>
+              <h2 className="location">
+                In {location?.city + ", " + location?.country_code}
+              </h2>
+            </div>
+            <button
+              className="more-info"
+              onClick={() => setDisplayMenu(!displayMenu)}
+            >
+              <p>{displayMenu ? "Less" : "More"}</p>
+              <img src={displayMenu ? ArrowDown : ArrowUp} alt="" />
+            </button>
           </div>
-          <div className="clock">
-            <h1 className="current-time">{time}</h1>
-            <p className="time-zone">{timeData?.abbreviation}</p>
-          </div>
-          <h2 className="location">
-            In {location?.city + ", " + location?.country_code}
-          </h2>
-          <button
-            className="more-info"
-            onClick={() => setDisplayMenu(!displayMenu)}
-          >
-            <p>{displayMenu ? "Less" : "More"}</p>
-            <img src={displayMenu ? ArrowDown : ArrowUp} alt="" />
-          </button>
+          <Menu active={displayMenu} daytime={dayTime} />
         </div>
-        <Menu active={displayMenu} />
       </div>
     </div>
   );

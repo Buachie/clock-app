@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { fetchTimeData, TimeData } from "../API";
 
-const Menu: React.FC<{ active: boolean }> = ({ active }) => {
+const Menu: React.FC<{ active: boolean; daytime: boolean }> = ({
+  active,
+  daytime,
+}) => {
   const [timeData, setTimeData] = useState<TimeData>();
 
   const getTimeData = async () => {
@@ -14,7 +17,11 @@ const Menu: React.FC<{ active: boolean }> = ({ active }) => {
   }, [timeData]);
 
   return (
-    <div className={`data ${active ? "active" : null}`}>
+    <div
+      className={`data ${active ? "active" : null} ${
+        daytime ? "light" : "dark"
+      }`}
+    >
       <div className="data-container">
         <div className="info">
           <p>CURRENT TIMEZONE</p>
