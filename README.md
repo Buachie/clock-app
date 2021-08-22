@@ -2,7 +2,7 @@
 
 ## Overview
 
-This React application displas the time, as well as other information such as timezone, city, and country using the following APIS:
+This React application displays the time, as well as other information such as timezone, city, and country using the following APIS:
 
 - [World Time API](http://worldtimeapi.org/) to get information used in the expanded information such as the day of the year.
 - [IP Geolocation API](https://freegeoip.app/) to get the city and country displayed underneath the time
